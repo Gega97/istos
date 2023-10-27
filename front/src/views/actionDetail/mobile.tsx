@@ -1,5 +1,6 @@
-import { Box, IconButton, Avatar } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useState } from "react";
+
+import { Box, Avatar, TextField, Button } from "@mui/material";
 
 import { IActionDetailView } from "../../interfaces";
 import Carrousel from "../../components/carrousel";
@@ -7,29 +8,17 @@ import { data } from "../../data";
 import TenderAction from "../../components/tenderAction";
 import SupportAction from "../../components/supportAction";
 import ActionDetailDescription from "../../components/actionDetailDescription";
+import MobileHeader from "../../components/mobileHeader";
 
 const MobileView: React.FC<IActionDetailView> = (props) => {
+  const [qtyICP, setQtyICP] = useState<string>("");
+  const [showPay, setShowPay] = useState<boolean>(false);
   return (
     <Box style={{ padding: 16 }}>
-      <Box style={{ display: "flex", alignItems: "center" }}>
-        <IconButton
-          style={{ paddingLeft: 0 }}
-          onClick={() => props.navigateTo(-1)}
-        >
-          <ArrowBackIcon />
-        </IconButton>
-        <Box
-          style={{
-            fontSize: 18,
-            fontWeight: "bold",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          {props.currentAction?.title}
-        </Box>
-      </Box>
+      <MobileHeader
+        navigateTo={props.navigateTo}
+        title={props.currentAction?.title || ""}
+      />
       <Box style={{ marginTop: 4 }}>
         <TenderAction
           avatarURL=""
@@ -45,13 +34,46 @@ const MobileView: React.FC<IActionDetailView> = (props) => {
         <ActionDetailDescription description="Necesitamos poder recoletar fondos para acomodar la calle principal de Chacao, la cual lleva en este estado de deterioro desde varios meses." />
       </Box>
       <SupportAction
-        onDonate={() => alert("Aqui donamos")}
+        onDonate={() => setShowPay(true)}
         onShared={() => alert("Aqui compartimos")}
       />
+      {showPay && (
+        <Box style={{ marginTop: 16, display: "flex", alignItems: "center" }}>
+          <Box style={{ fontSize: 12, marginRight: 8 }}>ICP</Box>
+          <Box style={{ marginRight: 12 }}>
+            <TextField
+              value={qtyICP}
+              placeholder="Cantidad"
+              onChange={(e: any) =>
+                Number(e.target.value) === -1
+                  ? false
+                  : setQtyICP(e.target.value)
+              }
+              variant="outlined"
+              type="number"
+              size="small"
+              fullWidth
+              InputProps={{
+                style: {
+                  height: 35,
+                  fontSize: 12,
+                },
+              }}
+            />
+          </Box>
+          <Button
+            style={{ textTransform: "capitalize" }}
+            size="small"
+            variant="outlined"
+          >
+            Pay
+          </Button>
+        </Box>
+      )}
 
       <Box
         style={{
-          marginTop: 12,
+          marginTop: 16,
           fontSize: 12,
           fontWeight: "bold",
         }}

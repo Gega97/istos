@@ -12,21 +12,31 @@ import {
   Box,
 } from "@mui/material/";
 
-import MenuIcon from "@mui/icons-material/Menu";
-import PersonAdd from "@mui/icons-material/PersonAdd";
+import logo from "../assets/IstosLogo.png";
+
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 
 import { AppContext } from "../context";
 import { IAppBarComponent } from "../interfaces";
+import { service } from "../service";
 
 // import LogoutIcon from "@mui/icons-material/Logout";
 
 const AppBar: React.FC<IAppBarComponent> = (props) => {
-  const { state, handleSidebar } = useContext(AppContext);
+  const { state, handleSidebar, logout } = useContext(AppContext);
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const onLogout = async (): Promise<void> => {
+    await service.onLogoutNFID();
+    logout();
+    props.navigateTo("/");
+    handleSidebar(false);
+  };
+
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -43,9 +53,9 @@ const AppBar: React.FC<IAppBarComponent> = (props) => {
           color="inherit"
           aria-label="menu"
           sx={{ mr: 2 }}
-          onClick={() => handleSidebar(true)}
+          // onClick={() => handleSidebar(true)}
         >
-          <MenuIcon style={{ color: "#fff" }} />
+          <img src={logo} style={{ width: 75 }} />
         </IconButton>
         <Box
           style={{ display: "flex", alignItems: "center", marginLeft: "auto" }}
@@ -115,7 +125,7 @@ const AppBar: React.FC<IAppBarComponent> = (props) => {
           </ListItemIcon>
           Configuraciones
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => onLogout()}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

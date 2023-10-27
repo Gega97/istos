@@ -12,7 +12,7 @@ const MobileView: React.FC<ILoginView> = (props) => {
         />
         <Box style={{ textAlign: "center" }}>
           <Box style={{ fontSize: 20, fontWeight: "bold" }}>
-            Wolcome to Istos
+            Welcome to Istos
           </Box>
 
           <Box

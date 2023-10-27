@@ -7,33 +7,15 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 
 import { IProfileView } from "../../interfaces";
+import MobileHeader from "../../components/mobileHeader";
 
 const MobileView: React.FC<IProfileView> = (props) => {
   return (
     <Box style={{ padding: 16 }}>
-      <Box style={{ display: "flex", alignItems: "center" }}>
-        <IconButton
-          style={{ paddingLeft: 0 }}
-          onClick={() => props.navigateTo(-1)}
-        >
-          <ArrowBackIcon />
-        </IconButton>
-        <Box
-          style={{
-            fontSize: 18,
-            fontWeight: "bold",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-          }}
-        >
-          Atras
-        </Box>
-      </Box>
+      <MobileHeader navigateTo={props.navigateTo} title="Atras" />
       <Box>
         <List>
           <ListItem disablePadding>

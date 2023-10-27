@@ -1,5 +1,8 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, IconButton } from "@mui/material";
+import ShareIcon from "@mui/icons-material/Share";
+
 import { ISupportComponent } from "../interfaces";
+import Share from "@mui/icons-material/Share";
 
 const SupportAction: React.FC<ISupportComponent> = (props) => {
   return (
@@ -34,16 +37,16 @@ const SupportAction: React.FC<ISupportComponent> = (props) => {
           >
             Aportar
           </Button>
-          <Button
+          <IconButton
+            color="primary"
             onClick={() => props.onShared()}
             size="small"
-            variant="outlined"
             style={{
               textTransform: "capitalize",
             }}
           >
-            Compartir
-          </Button>
+            <ShareIcon fontSize="small" />
+          </IconButton>
         </Box>
       </Box>
     </Box>

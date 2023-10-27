@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import { Box, IconButton, TextField, Avatar, Button } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { IRegisterView } from "../../interfaces";
+import MobileHeader from "../../components/mobileHeader";
 
 const MobileView: React.FC<IRegisterView> = (props) => {
   const [username, setUsername] = useState<string>("");
@@ -14,25 +14,7 @@ const MobileView: React.FC<IRegisterView> = (props) => {
   return (
     <>
       <Box style={{ padding: 16 }}>
-        <Box style={{ display: "flex", alignItems: "center" }}>
-          <IconButton
-            style={{ paddingLeft: 0 }}
-            onClick={() => props.navigateTo(-1)}
-          >
-            <ArrowBackIcon />
-          </IconButton>
-          <Box
-            style={{
-              fontSize: 18,
-              fontWeight: "bold",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            Cuentanos de ti
-          </Box>
-        </Box>
+        <MobileHeader title="Cuentanos de ti" navigateTo={props.navigateTo} />
         <Box style={{ textAlign: "center", marginTop: 16, marginBottom: 16 }}>
           <IconButton>
             <Avatar

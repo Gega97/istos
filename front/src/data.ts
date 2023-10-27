@@ -46,6 +46,24 @@ const actionsPapers: PaperActionItem[] = [
     amount: "$1000",
     contributors: 20,
   },
+  {
+    id: 3,
+    title: "Fuga de agua, principal de chacao, chacao, chacao, chacao, chacao",
+    image:
+      "https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2023/03/23/2923602.jpg",
+    address: "Chacao, Chacap",
+    amount: "$1000",
+    contributors: 20,
+  },
+  {
+    id: 4,
+    title: "Fuga de agua, principal de chacao, chacao, chacao, chacao, chacao",
+    image:
+      "https://cdn2.excelsior.com.mx/media/styles/image800x600/public/pictures/2023/03/23/2923602.jpg",
+    address: "Chacao, Chacap",
+    amount: "$1000",
+    contributors: 20,
+  },
 ];
 
 const dataForCarrousel: string[] = [

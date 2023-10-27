@@ -78,3 +78,8 @@ export interface ISupportComponent {
 export interface IActionDescription {
   description: string;
 }
+
+export interface IMobileHeader {
+  title: string;
+  navigateTo: (path: any) => void;
+}
